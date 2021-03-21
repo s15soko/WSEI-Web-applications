@@ -2,47 +2,63 @@ interface IAudios {
     [key: string]: HTMLAudioElement;
 } 
 
+interface IMapper {
+    [key: string]: string;
+}
+
 class Keyboard
 {
-    load(): IAudios
+    audios: IAudios = {};
+    key: (string | null) = null;
+
+    load(): void
     {
         let keyTypes = ["boom", "clap", "hihat", "kick", "openhat", "ride", "snare", "tink", "tom"];
         let audios: IAudios  = {};
 
         keyTypes.forEach(keyType => {
-            let sound: (HTMLAudioElement | null) = document.querySelector('[data-sound="boom"]');
+            let sound: (HTMLAudioElement | null) = document.querySelector(`[data-sound="${keyType}"]`);
 
             if(sound != null) {
                 audios[keyType] = sound;
             }
         });
 
-        return audios;
+        this.audios = audios;
+    }
+
+    setKey(key: string) {
+        this.key = key;
     }
 
     play()
     {
-        
+        if(this.key != null && (this.key in this.audios)) {
+            (this.audios[this.key]).play();
+        }
     }
 }
 
 class DefaultKeyboardMapper
 {
-    static getMapper()
+    static getMapper(): IMapper
     {
         return {
-            'e': "boom",
-            'r': "clap",
-            't': "hihat",
-            'y': "kick",
-            'u': "openhat",
-            'd': "ride",
-            'f': "snare",
-            'g': "tink",
-            'h': "tom",
+            '1': "boom",
+            '2': "clap",
+            '3': "hihat",
+            '4': "kick",
+            '5': "openhat",
+            '6': "ride",
+            '7': "snare",
+            '8': "tink",
+            '9': "tom",
         };
     }
 }
+
+const keyboard = new Keyboard();
+keyboard.load();
 
 function onKeyPress(event: KeyboardEvent)
 {
@@ -50,17 +66,21 @@ function onKeyPress(event: KeyboardEvent)
     let time = event.timeStamp;
 
     let mapper = DefaultKeyboardMapper.getMapper();
-
-    console.log(`onKeyPress ${key} ${time}`);
+    if(key in mapper) {
+        keyboard.setKey(mapper[key]);
+        keyboard.play();
+    }
 }
 
 function onClick(event: Event)
 {
-    var audios: any;
-
-
+    let target = <HTMLElement> event.target;
+    let soundKey: (string | undefined) = target.dataset.sound;
     
-    var audio = new Audio('public/sounds/boom.wav'); 
+    if(soundKey != undefined) {
+        keyboard.setKey(soundKey);
+        keyboard.play();
+    }
 }
 
 //
