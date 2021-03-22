@@ -34,14 +34,16 @@ class Keyboard
     play()
     {
         if(this.key != null && (this.key in this.audios)) {
-            (this.audios[this.key]).play();
+            let a = this.audios[this.key];
+            a.currentTime = 0;
+            a.play();
         }
     }
 }
 
 class DefaultKeyboardMapper
 {
-    static getMapper(): IMapper
+    static get mapper(): IMapper
     {
         return {
             '1': "boom",
@@ -65,7 +67,7 @@ function onKeyPress(event: KeyboardEvent)
     let key = String(event.key).toLocaleLowerCase();
     let time = event.timeStamp;
 
-    let mapper = DefaultKeyboardMapper.getMapper();
+    let mapper = DefaultKeyboardMapper.mapper;
     if(key in mapper) {
         keyboard.setKey(mapper[key]);
         keyboard.play();
