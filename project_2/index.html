@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>WSEI Web Application - project 2</title>
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
 
     <audio src="public/sounds/boom.wav" data-sound="boom"></audio>
@@ -28,14 +30,24 @@
             <div class="keyboardKey" data-sound="kick">Kick (4)</div>
             <div class="keyboardKey" data-sound="openhat">Openhat (5)</div>
             <div class="keyboardKey" data-sound="ride">Ride (6)</div>
-            
+
             <div class="keyboardKey" data-sound="snare">Snare (7)</div>
             <div class="keyboardKey" data-sound="tink">Tink (8)</div>
             <div class="keyboardKey" data-sound="tom">Tom (9)</div>
         </div>
 
     </div>
-    
+
+    <div class="recorderContainer">
+
+        <div id="recorderPanel">
+            <button id="recordBtn">Record</button>
+            <button id="stopBtn">Stop</button>
+            <button id="playBtn">Play</button>
+        </div>
+
+    </div>
+
 </body>
-<script src="./build/index.js"></script>
+<script src="./build/index.js" type="module"></script>
 </html>
