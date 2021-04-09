@@ -1,8 +1,8 @@
-import Keyboard from "./Keyboard.js";
-import Recorder, { RecorderState } from "./Recorder.js";
-import DefaultKeyboardMapper from "./mappers/DefaultKeyboardMapper.js";
-import Player from "./Player.js";
-import { initLayers } from "./Layer.js";
+import Keyboard from "./Keyboard";
+import Recorder, { RecorderState } from "./Recorder";
+import DefaultKeyboardMapper from "./mappers/DefaultKeyboardMapper";
+import Player from "./Player";
+import { initLayers } from "./Layer";
 
 const numberOfLayers = 4;
 const recorders: Recorder[] = [];

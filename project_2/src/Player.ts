@@ -1,5 +1,5 @@
 import Keyboard from "./Keyboard";
-import Recorder from "./Recorder.js";
+import Recorder from "./Recorder";
 
 export default class Player 
 {

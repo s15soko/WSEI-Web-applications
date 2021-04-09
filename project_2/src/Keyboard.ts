@@ -1,4 +1,4 @@
-import { IAudios } from "./interfaces/KeyboardInterfaces.js";
+import { IAudios } from "./interfaces/KeyboardInterfaces";
 
 export default class Keyboard
 {

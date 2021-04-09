@@ -1,4 +1,4 @@
-import { IMapper } from "../interfaces/KeyboardInterfaces.js";
+import { IMapper } from "../interfaces/KeyboardInterfaces";
 
 export default class DefaultKeyboardMapper
 {
