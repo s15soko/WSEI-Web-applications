@@ -1,5 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    min-height: 100vh;
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .searchContainer {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+}
+
+.container .searchContainer input[type=text]{
+
+}
+
+.container .resultContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#result {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 850px;
+}
+
+.weatherCard {
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    height: 160px;
+    color: white;
+    border: 1px solid white;
+    padding: 5px;
+    margin: 5px;
+}
+
+.weatherCard .title {
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.6em;
+}
+
+.weatherCard .weatherInfo {
+    text-align: center;
 }
