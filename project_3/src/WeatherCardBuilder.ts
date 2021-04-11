@@ -1,15 +1,4 @@
-interface ICityWeather {
-    [index: number]: ICityWeather;
-    description: string;
-    icon: string;
-    id: number;
-    main: string;
-}
-
-interface ICity {
-    name: string;
-    weather: ICityWeather;
-}
+import ICity from "./interfaces/Openweathermap";
 
 export class WeatherCardBuilder 
 {
