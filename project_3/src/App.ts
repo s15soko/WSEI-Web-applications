@@ -12,22 +12,26 @@ export default class App
         return localStorage.getItem(this.storageKey);
     }
 
-    public setOrSkip(city: string) {
+    public setOrSkip(cityIdentifier: string) {
         let items = this._getItemsAsString();
         let itemAsArray = items ? JSON.parse(items) : [];
 
-        if(!itemAsArray.includes(city)) {
-            itemAsArray.push(city);
+        if(!itemAsArray.includes(cityIdentifier)) {
+            itemAsArray.push(cityIdentifier);
             localStorage.setItem(this.storageKey, JSON.stringify(itemAsArray));
         }
     }
 
-    public async getCityInfo(city: string) {
-        return await this._getWeather(city);
+    public async getCityInfo(cityName: string = "", cityId: null|number = null) {
+        return await this._getWeather(cityName, cityId);
     }
 
-    private async _getWeather(city: string): Promise<any> {
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${this.apiKey}&units=metric`;
+    private async _getWeather(cityName: string = "", cityId: null|number = null): Promise<any> {
+        const url = cityId != null
+            ? `http://api.openweathermap.org/data/2.5/weather?id=${cityId}&APPID=${this.apiKey}&units=metric`
+            : `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${this.apiKey}&units=metric`;
+
+
         const response = await fetch(url);
         return await response.json();
     }
