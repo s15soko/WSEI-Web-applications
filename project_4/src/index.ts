@@ -1,6 +1,7 @@
 import App from "./App";
 import ICity from "./interfaces/Openweathermap";
 import { WeatherCardBuilder } from "./WeatherCardBuilder";
+import "./scss/index.scss"
 
 const app = new App();
 const result = document.getElementById("result");
