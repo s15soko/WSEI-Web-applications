@@ -1,5 +1,32 @@
+@import "./create-note.scss";
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+}
+
+.root {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+.sidebar {
+    min-width: 300px;
+    width: 300px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-notes-header {
+    display: flex;
+    justify-content: center;
 }
