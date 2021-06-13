@@ -6,30 +6,76 @@
         max-width: 500px;
         box-shadow: 0px 1px 4px 2px #dbdbdb;
         border-radius: 8px;
+        transition: background-color 0.5s ease;
     
         .note-title {
             font-weight: 900;
             color: rgb(100, 100, 100);
-            padding: 8px 16px;
         }
     
         .footer {
             display: flex;
-            justify-content: flex-end;
+            flex-direction: row;
+            justify-content: space-between;
             padding: 8px 16px;
-    
-            .footer-close-btn {
-                font-size: 1em;
-                padding: 8px 20px;
-                border-radius: 4px;
-                background: transparent;
-                border: none;
-    
-                &:hover {
-                    background-color: rgb(246, 246, 246);
-                    cursor: pointer;
+
+            .options {
+
+                .color {
+                    position: relative;
+
+                    .color-circle {
+                        .color-picker-button {
+                            background-color: transparent;
+                            border: 1px solid gray;
+                            border-radius: 100%;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .color-palette-container-active { display: grid !important; }
+                    .color-palette-container {
+                        display: none;
+                        grid-template-columns: repeat(4, 32px);
+                        border: 1px solid rgb(184, 184, 184);
+                        border-radius: 4px;
+                        background-color: white;
+                        padding: 8px;
+                        position: absolute;
+                        bottom: calc(100% + 2px);
+                        
+                        .color-picker {
+                            margin: 4px;
+                            width: 24px;
+                            height: 24px;
+                            border-radius: 100%;
+                            border: 1px solid #cccccc;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                    }
                 }
             }
+
+            .buttons {
+                .footer-close-btn {
+                    font-size: 1em;
+                    padding: 8px 20px;
+                    border-radius: 4px;
+                    background: transparent;
+                    border: none;
+        
+                    &:hover {
+                        background-color: rgba(246, 246, 246, 0.3);
+                        cursor: pointer;
+                    }
+                }
+            }            
         }
     
         .not-visible {

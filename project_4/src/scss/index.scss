@@ -9,6 +9,13 @@ body {
     margin: 0;
 }
 
+input, button, select, textarea, optgroup, option {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
 .root {
     display: flex;
     flex-direction: row;
@@ -16,8 +23,8 @@ body {
 }
 
 .sidebar {
-    min-width: 300px;
-    width: 300px;
+    // min-width: 300px;
+    // width: 300px;
 }
 
 .container {
