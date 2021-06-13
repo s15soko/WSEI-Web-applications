@@ -1,4 +1,4 @@
-export class NoteBuilder 
+export default class NoteBuilder 
 {
     
 }

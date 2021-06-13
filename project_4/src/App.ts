@@ -1,51 +1,21 @@
-import CreateNoteInput from "./CreateNoteInput";
-import Notes from "./Notes";
+import NoteCreator from "./creators/NoteCreator";
+import Note from "./entities/Note";
+import Notes from "./entities/Notes";
+import CreateNoteInterface from "./interfaces/CreateNote";
 
-export default class App 
+export default class App implements CreateNoteInterface
 {
-    createNoteInput: CreateNoteInput;
+    noteCreator: NoteCreator;
     notes: Notes;
 
     constructor()
     {
+        this.noteCreator = new NoteCreator(this);
         this.notes = new Notes();
-        this.createNoteInput = new CreateNoteInput();
-
-        this.init();
-
     }
 
-    private init()
+    public createNote(note: Note)
     {
-        const noteInput = this.createNoteInput;
-
-        noteInput.createNoteBtnClose?.addEventListener("click", (event) => {
-            this.createNote();
-        });
-
-        if(noteInput.createNoteInput != null)
-        {
-            const createNoteContainer = noteInput.getNoteContainer();
-            noteInput.createNoteInput.addEventListener('focus', (event) => {
-                noteInput.showNotVisibleElements();
-            }); 
-
-            document.addEventListener('click', (event) => {
-                const target = <Node> event.target;
-
-                if (target !== createNoteContainer && !createNoteContainer.contains(target)) {
-                    this.createNote();
-                    noteInput.hideNotVisibleElements();
-                }
-            });
-        } 
-    }
-
-    createNote()
-    {
-        
-        console.log(this.createNoteInput.title);
-
-        this.createNoteInput.title = "";
+        console.log("create note: ", note);
     }
 }
