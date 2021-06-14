@@ -3,15 +3,19 @@ import Storage from "../interfaces/Storage";
 
 export default class AppFirestoreStorage implements Storage
 {
-    save(note: NoteInterface): boolean {
-        throw new Error("Method not implemented.");
+    async save(note: NoteInterface) {
+        return false;
     }
 
-    delete(noteId: string): boolean {
-        throw new Error("Method not implemented.");
+    async update(note: NoteInterface) {
+        return false;
     }
 
-    getAll(): NoteInterface[] {
-        throw new Error("Method not implemented.");
+    async delete(noteId: string) {
+        return false;
+    }
+
+    async getAll() {
+        return [];
     }
 }

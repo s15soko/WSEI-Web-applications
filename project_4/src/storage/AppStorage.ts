@@ -37,10 +37,8 @@ export default class AppStorage implements Storage
         return newNote;
     }
 
-    //
-
-    save(note: NoteInterface): boolean {
-        
+    private loadStorageNote(note: NoteInterface)
+    {
         let attr: NoteStorageInterface = {
             id: note.Id,
             title: note.Title,
@@ -50,6 +48,14 @@ export default class AppStorage implements Storage
             hexColor: note.Color.HexColor,
         };
 
+        return attr;
+    }
+
+    //
+
+    async save(note: NoteInterface) {
+        
+        let attr = this.loadStorageNote(note);
         let items = this.getCurrentNotesAsStorageObjects();
         items.push(attr);
 
@@ -57,10 +63,23 @@ export default class AppStorage implements Storage
         return true;
     }
 
-    delete(noteId: string): boolean {
+    async update(note: NoteInterface) {
         
         let items = this.getCurrentNotesAsStorageObjects();
+        for(let i = 0; i < items.length; i++) {
+            if (items[i].id === note.Id) {
+                items[i] = this.loadStorageNote(note);
+                this.saveInStorage(items);
+                return true;
+            }
+        }
 
+        return false;
+    }
+
+    async delete(noteId: string) {
+        
+        let items = this.getCurrentNotesAsStorageObjects();
         for(let i = 0; i < items.length; i++) {
             if (items[i].id === noteId) {
                 items.splice(i, 1);
@@ -72,7 +91,7 @@ export default class AppStorage implements Storage
         return false;
     }
     
-    getAll(): NoteInterface[] {
+    async getAll() {
         let items = this.getCurrentNotesAsStorageObjects();
         let notes: NoteInterface[] = [];
 
