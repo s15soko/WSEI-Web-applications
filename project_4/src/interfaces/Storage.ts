@@ -1,4 +1,7 @@
+import NoteInterface from "./Note";
+
 export default interface Storage { 
-    // save(): boolean;
-    // delete(identifier: string | number): boolean;
+    save(note: NoteInterface): boolean;
+    delete(noteId: string): boolean;
+    getAll(): NoteInterface[];
 }

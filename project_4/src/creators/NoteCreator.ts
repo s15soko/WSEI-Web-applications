@@ -67,7 +67,11 @@ export default class NoteCreator
                 colorPicker.addEventListener("click", (event) => {
                     let target = <HTMLElement> event.target;
                     let hexColor = target.getAttribute("attr-hex-color");
-                    this.setSelfContainerColor(hexColor);
+                    
+                    if(hexColor !== null) {
+                        this._note.Color.HexColor = hexColor;
+                        this.setSelfContainerColor(hexColor);
+                    }
                 });
             });
         }
@@ -170,6 +174,7 @@ export default class NoteCreator
         this.Content = "";
         this._note = new Note();
         this.setDefaultSelfContainerColor();
+        this.hidePaletteContainer();
     }
 
     private canCreateNote() {
