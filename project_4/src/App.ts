@@ -8,24 +8,36 @@ import Notes from "./controllers/Notes";
 import config from "./config";
 
 export default class App implements NoteControllerInterface {
+
+    private _storageType = "";
+
     noteCreator: NoteCreator;
     concrete: StorageInterface;
 
-    constructor() {
+    constructor(storageType = "") {
+
+        if (storageType !== "") {
+            this._storageType = storageType;
+        }
+
         this.noteCreator = new NoteCreator(this);
         this.concrete = this.getStorageService();
     }
 
     //
 
-    private saveNote(note: NoteInterface) {
-        this.concrete.save(note);
-        this.renderNotes();
+    public getStorageType(): string
+    {
+        if(this._storageType !== "") {
+            return this._storageType;
+        }
+
+        return config.storage;
     }
 
-    private getStorageService(): StorageInterface {
+    public getStorageService(): StorageInterface {
 
-        const type = config.storage;
+        const type = this.getStorageType();
 
         if (type === "firebase") return new AppFirestoreStorage();
         return new AppStorage();
@@ -34,8 +46,12 @@ export default class App implements NoteControllerInterface {
     //
 
     public async createNote(note: NoteInterface) {
-        this.saveNote(note);
-        return true;
+        let result = await this.concrete.save(note);
+        if (result) {
+            this.renderNotes()
+        }
+
+        return result;
     }
 
     public async updateNote(note: NoteInterface) {
@@ -58,9 +74,14 @@ export default class App implements NoteControllerInterface {
 
     //
 
+    public async getAllNotes()
+    {
+        return await this.concrete.getAll(); 
+    }
+
     public async renderNotes()
     {
-        const notes = new Notes(await this.concrete.getAll(), this);
+        const notes = new Notes(await this.getAllNotes(), this);
         notes.render();
     }
 }

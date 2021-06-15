@@ -71,16 +71,20 @@ export default class AppFirestoreStorage implements Storage
 
     async getAll() {
 
-        const res = await this.db.collection('notes').get().then(response => {
-            
-            const notes: NoteInterface[] = [];
-            response.docs.forEach(data => {
-                const note = data.data() as FirebaseDbNoteStorage;
-                notes.push(this.loadNote(note, data.id));
-            });
+        let res: NoteInterface[] = [];
 
-            return notes;
-        });
+        try {
+            res = await this.db.collection('notes').get().then(response => {
+            
+                const notes: NoteInterface[] = [];
+                response.docs.forEach(data => {
+                    const note = data.data() as FirebaseDbNoteStorage;
+                    notes.push(this.loadNote(note, data.id));
+                });
+    
+                return notes;
+            });
+        } catch (error) {}
 
         return res;
     }
