@@ -9,12 +9,8 @@ export default class NoteCreator
     private _note: Note;
     private _noteController: NoteControllerInterface;
     private _defaultBackgroundHexColor = "#fff";
-
-    private _title = "";
-    private _content = "";
-
+    
     public set Title(title: string) {
-        this._title = title;
         this._note.Title = title;
 
         if(this.createNoteTitleInput !== null) {
@@ -23,7 +19,6 @@ export default class NoteCreator
     }
 
     public set Content(content: string) {
-        this._content = content;
         this._note.Content = content;
 
         if(this.createNoteContentInput !== null) {
@@ -195,6 +190,7 @@ export default class NoteCreator
 
     public close(createOnClose = true) {
         if (createOnClose && this.canCreateNote()) {
+            this._note.CreatedAt = Date.now();
             this._noteController.createNote(this._note);
         }
 
