@@ -59,7 +59,6 @@ export class WeatherCardBuilder
 
     build(): HTMLElement
     {
-        console.log(this.city)
         const card = document.createElement("div");
         card.classList.add("weatherCard");
         card.id = String(this.city.id);

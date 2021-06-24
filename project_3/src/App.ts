@@ -1,6 +1,6 @@
 export default class App 
 {
-    private apiKey = "50d53005c0fd5f556bb4ef15224c4209";
+    private apiKey = "14e49f5e4f7411d8d7cc7c4499b3c2aa";
     public storageKey = "weatherItems";
 
     public getItems() {

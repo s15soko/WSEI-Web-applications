@@ -1,3 +1,4 @@
+import { IChannel } from "./interfaces/Channel";
 import Keyboard from "./Keyboard";
 import Recorder from "./Recorder";
 
@@ -16,7 +17,7 @@ export default class Player
         let startAt = this.recorder.startAt;
 
         let prevTime = startAt;
-        channel?.forEach((step: any) => {
+        channel?.forEach((step: IChannel) => {
             if(prevTime == 0) {
                 prevTime = step.time;
             }

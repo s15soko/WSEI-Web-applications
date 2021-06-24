@@ -1,8 +1,10 @@
+import { IChannel } from "./interfaces/Channel";
+
 class Recorder
 {
     private _startAt: number = 0;
     private _state: RecorderState = RecorderState.WAITING;
-    private _channel: any = [];
+    private _channel: IChannel[] = [];
 
     push(key: string, time: number): void {
         if(this.state == RecorderState.RECORDING) {

@@ -24,7 +24,7 @@ class Project
     {
         if(this.buttons != undefined) {
             this.buttons.forEach((button: HTMLInputElement) => {
-                button.addEventListener("input", (e: any) => {
+                button.addEventListener("input", () => {
                     this.updateInputsData();
                     this.updateData();
                 });
